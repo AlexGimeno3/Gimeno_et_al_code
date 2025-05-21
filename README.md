@@ -5,7 +5,7 @@ It is organized as follows: [organization here]
 
 
 # About run_all.py
-***Please note: this program is intended to allow for reviewers/other researchers to examine the methodology in the paper [TITLE]. It has not been validated for clinical use. Please DO NOT use it for such.***
+***Please note: this program is intended to allow for reviewers/other researchers to examine the methodology in the paper [TITLE]. It has not been validated for clinical use. Please DO NOT use it for any sensitive medical purposes.***
 
 This code is designed to take in raw EEG files (specifically, .edf files), process them, and prepare all necessary objects for application of stats to the sample. The purpose of this document is to walk the user through the processing steps in each script as well as the necessary dependencies. Please read this in its entirety before using the code.
 
@@ -34,11 +34,25 @@ All OBM folders should be stored in one subdirectory. A given FIS may have multi
 ## Other necessary files:
 A few more data files are needed to aid with determining recording times relative to surgery start and end times.
 ### Nicolet recording times
-This Excel file should contain the following columns: "FIS" (with entries as strings such as FIS1), fis_num (with entries as integers such as 1), folder_path (the path to the folder containing the downloaded FIS file), date_cx (the date of the surgeries), analyze_end_time (the time that the surgery ended, expressed as HHMM), recording_start_date (the date the recording started, expressed as DDMMYYY), recording_start_time (expressed as HHMMSS), and recording_time_total (expressed as HHMMSS).
+This Excel file should contain the following columns: "FIS" (with entries as strings such as FIS1), "fis_num" (with entries as integers such as 1), "folder_path" (the path to the folder containing the downloaded FIS file), "date_cx" (the date of the surgeries), "analyze_end_time" (the time that the surgery ended, expressed as HHMM), "recording_start_date" (the date the recording started, expressed as DDMMYYY), "recording_start_time" (expressed as HHMMSS), and "recording_time_total" (expressed as HHMMSS).
 ### OBM recording times
-Pass
+This Excel file should contain the following columns: "folder_path" (the path to the folder containing the downloaded FIS file), "recording_start_date" (the date the recording started, expressed as DDMMYYY), and "recording_start_time" (expressed as HHMMSS).
 ### Surgery times
-_NB: The code has neither been built for nor validated on surgeries ocurring over two days (i.e., starting at 2300 on Jan 1 and ending at 0100 on Jan 2)._ It is very much recommended to omit these surgeries.
+***NB: The code has neither been built for nor validated on surgeries ocurring during two different calendar days (i.e., starting at 2300 on Jan 1 and ending at 0100 on Jan 2).*** It is very much recommended to omit these surgeries.
+
+This Excel file should contain the following columns: "fis_num" (with entries as integers such as 1), "date_surgery" (with entries as dates formatted as 1900-04-16), "time_start_cx" (with entries as surgery start times formatted as HHMM), "time_end_cx" (with entries as surgery end times formatted as HHMM), "time_start_ecc" (with entries as the start of CPB formatted as HHMM), "time_start_clamp" (with entries as the start of aortic cross clamping formatted as HHMM), "time_end_clamp" (with entries as the end of aortic cross-clamping formatted as HHMM), and "time_end_ecc" (with entries as the end of CPB formatted as HHMM).
+
+## Running the code
+### Adjusting parameters
+The program contains numerous parameters one can change during processing. Going file-by-file:
+__run_pipeline.py__
+- base_dir (str): the directory where the user would like the analysis folders and files to be built
+- nicolet_recording_time_data_path (str): the full path of the Nicolet recording times file
+- OBM_recording_time_data_path (str): the full path of the OBM recording times file
+- surgery_times_path (str): the full path of the surgery times file
+- windows (arr of arr): a single array, formatted either as [[a,b]] (where a and b are the integer start and end times of interest in hours postop) or simply [["surgery"]].
+
+
 
 Dependencies:
 - os v
