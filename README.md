@@ -1,13 +1,10 @@
 # General info:
 This repository is associated with the paper [paper title, etc here].
 
-It is organized as follows: [organization here]
+# About analyze_files.py
+***Please note: this program is intended to allow for reviewers/other researchers to examine the methodology in the paper [TITLE]. It has not been validated for clinical use. Please DO NOT use it for any medical purposes.***
 
-
-# About run_all.py
-***Please note: this program is intended to allow for reviewers/other researchers to examine the methodology in the paper [TITLE]. It has not been validated for clinical use. Please DO NOT use it for any sensitive medical purposes.***
-
-This code is designed to take in raw EEG files (specifically, .edf files), process them, and prepare all necessary objects for application of stats to the sample. The purpose of this document is to walk the user through the processing steps in each script as well as the necessary dependencies. Please read this in its entirety before using the code.
+This code is designed to take in raw EEG files (specifically, .edf files), process them, prepare all necessary objects for application of stats to the sample, and then build a GUI allowing the user to perform the stats they would like to. The purpose of this document is to walk the user through the expected input structure. Please read this document in its entirety before using the code.
 
 # Before starting
 ## Downloading EDF files
@@ -23,7 +20,11 @@ After this downloading procedure, I recommend, for each FIS folder, the user pro
 The OBM files will be downloaded in EDF-D format (i.e., as discontinuous files); MNE cannot read EDF-D files, only EDF-C files. Therefore, the user will need to manually convert EDF-D to EDF-C files. I opted to do this using EDFbrowser (https://www.teuniz.net/edfbrowser/) version 2.12, 64-bit. Specifically, the user can go to Tools --> Convert EDF-D to EDF-C, which will create the necessary continuous EDF files for processing. These files will also contain the necessary metadata to merge into one data stream for later processing.
 
 ## Storing EDF files
-This code was designed based on the specific file formats and structures that I encountered using Nicolet and OBM machines [GIVE HARDWARE/SOFTWARE details of the EEG machines used]. Therefore, the expected directory structures of the EEG files are built around these machines.
+This code was designed based on the specific file formats and structures that I encountered using Nicolet and OBM (Olympic Brainz Monitor) machines. Therefore, the expected directory structures of the EEG files are built around these machines. Specific details of the machines are:
+
+- OBM viewer 3.1.5.57
+- NicoletOne Monitor Reader 5.71.0.2439
+-  
 
 ### Nicolet
 All Nicolet folders should be stored in one subdirectory. A given FIS (that is, ID) may have multiple folders; however, each folder must have the EDF files from one single recording. Folder names must begin with "FISXXX_" (where XXX is any integer over 0). Within the folder, each edf file must start with "FISXXX". If a single recording is split amongst multiple EDF files (this happens when EDF-D files are encountered/exported on a machine), the first should have no suffix, followed by 1, then 2, then 3, etc.
@@ -42,19 +43,27 @@ This Excel file should contain the following columns: "folder_path" (the path to
 
 This Excel file should contain the following columns: "fis_num" (with entries as integers such as 1), "date_surgery" (with entries as dates formatted as 1900-04-16), "time_start_cx" (with entries as surgery start times formatted as HHMM), "time_end_cx" (with entries as surgery end times formatted as HHMM), "time_start_ecc" (with entries as the start of CPB formatted as HHMM), "time_start_clamp" (with entries as the start of aortic cross clamping formatted as HHMM), "time_end_clamp" (with entries as the end of aortic cross-clamping formatted as HHMM), and "time_end_ecc" (with entries as the end of CPB formatted as HHMM).
 
-## Running the code
-### Adjusting parameters
-The program contains numerous parameters one can change during processing. Going file-by-file:
-__run_pipeline.py__
-- base_dir (str): the directory where the user would like the analysis folders and files to be built
-- nicolet_recording_time_data_path (str): the full path of the Nicolet recording times file
-- OBM_recording_time_data_path (str): the full path of the OBM recording times file
-- surgery_times_path (str): the full path of the surgery times file
-- windows (arr of arr): a single array, formatted either as [[a,b]] (where a and b are the integer start and end times of interest in hours postop) or simply [["surgery"]].
-
-
-
+## Dependencies
+The analysis for this paper was run on Python 3.12.7, 64-bit. 
 Dependencies:
-- os v
-- sys v
-- 
+ - numpy 1.26.4
+ - scipy 1.11.4
+ - pandas 2.2.3
+ - matplotlib 3.10.0
+ - mne 1.9.0
+ - neurokit2 0.2.11
+ - pyEDFlib 0.1.40
+ - pyGetWindow 0.0.9
+ - pyAutoGUI 0.9.54
+ - openpyxl 3.1.5
+ - nolds 0.6.1
+ - statsmodels 0.14.4
+ - EntropyHub 2.0
+ - PyPDF2 3.0.1
+ - NEURAL_py_EEG 0.1.4 (NB: I also have a locally downloaded and managed/edited NEURAL_py_EEG folder in utils. This folder should be left untouched, while the dependency here would also need downloaded.)
+
+# Running the code
+## Adjusting parameters
+In analyze_files.py, the user can designate if they would like to process intraoperative or postoperative data. Before running the script, the user will need to do 2 things:
+  1. Update the setting variable on line 83. Valid values are "intraop", if the user is processing intraoperative data, and "postop", if the user is processing postoperative data. Respectively, these point to processing_parameters_intraop.py and processing_parameters_postop.py in the utils folder.
+  2. Update processing_parameters_intraop.py or processing_parameters_postop.py. The default values in these dictionaries are the ones that were used for the analysis in [paper title, etc here]. It is recommended that the user not touch the variables under #File structure variables. The other variables can be changed to customize the analysis; descriptions of these variables are included in the respective dictionaries
