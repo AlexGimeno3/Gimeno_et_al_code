@@ -2,13 +2,12 @@
 This repository is associated with the paper [paper title, etc here].
 
 # About analyze_files.py
-***Please note: this program is intended to allow for reviewers/other researchers to examine the methodology in the paper [TITLE]. It has not been validated for clinical use. Please DO NOT use it for any medical purposes.***
+***Please note: this repository is intended to allow for reviewers/other researchers to examine the methodology in the paper [TITLE]. It has not been validated for clinical use. Please DO NOT use it for any medical purposes.***
 
-This code is designed to take in raw EEG files (specifically, .edf files), process them, prepare all necessary objects for application of stats to the sample, and then build a GUI allowing the user to perform the stats they would like to. The purpose of this document is to walk the user through the expected input structure. Please read this document in its entirety before using the code.
+This code was designed to import raw EEG files (specifically, .edf files), process them, and then build a GUI to allow for tailored analysis. The purpose of this document is to provide the reader with more methodological detail than is possible in the main manuscript or supplementary materials. Details for each .py file are provided at the top of each file.
 
-# Before starting
+# Pre-analysis
 ## Downloading EDF files
-NB: While downloading, it would be a smart idea to note recordin start and end dates and times (see the section **Other Necessary Files**)
 ### For Nicolet machines
 [Add Nicolet details here, including how to download.]
 
@@ -24,7 +23,7 @@ This code was designed based on the specific file formats and structures that I 
 
 - OBM viewer 3.1.5.57
 - NicoletOne Monitor Reader 5.71.0.2439
--  
+- NicoletOne Monitor Reader 5.94.1.534
 
 ### Nicolet
 All Nicolet folders should be stored in one subdirectory. A given FIS (that is, ID) may have multiple folders; however, each folder must have the EDF files from one single recording. Folder names must begin with "FISXXX_" (where XXX is any integer over 0). Within the folder, each edf file must start with "FISXXX". If a single recording is split amongst multiple EDF files (this happens when EDF-D files are encountered/exported on a machine), the first should have no suffix, followed by 1, then 2, then 3, etc.
