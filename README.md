@@ -1,10 +1,10 @@
 # General info:
-This repository is associated with the paper [paper title, etc here].
+This repository is associated with the paper _Association of quantitative EEG during infant cardiopulmonary bypass with two-year neurodevelopmental outcomes_.
 
 # About analyze_files.py
-***Please note: this repository is intended to allow for reviewers/other researchers to examine the methodology in the paper [TITLE]. It has not been validated for clinical use. Please DO NOT use it for any medical purposes.***
+***Please note: this repository is intended to allow for reviewers/other researchers to examine the methodology in the paper _Association of quantitative EEG during infant cardiopulmonary bypass with two-year neurodevelopmental outcomes_. It has not been validated for clinical use. Please DO NOT use it for any medical purposes.***
 
-This code was designed to import raw EEG files (specifically, .edf files), process them, and then build a GUI to allow for tailored analysis. The purpose of this document is to provide the reader with more methodological detail than is possible in the main manuscript or supplementary materials. Details for each .py file are provided at the top of each file.
+This code was designed to import raw EEG files (specifically, .edf files), process them, and then build a GUI to allow for tailored analysis. The purpose of this document is to provide the reader with more methodological detail than is possible in the main manuscript or supplementary materials.
 
 # Pre-analysis
 ## Downloading EDF files
