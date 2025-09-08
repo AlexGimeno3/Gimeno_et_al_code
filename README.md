@@ -8,12 +8,12 @@ This code was designed to import raw EEG files (specifically, .edf files), proce
 
 # Pre-analysis
 ## Downloading EDF files
-EEG files were downloaded as described in the PDFs in the EEG_file_downloading directory. The options _Entire signal_ and _Raw data_ were selected during download. The file readers on the Nicolet machines included in the final sample were:  
+EEG files were downloaded as described in the PDFs in the EEG_download_details directory. The options _Entire signal_ and _Raw data_ were selected during download. The file readers on the Nicolet machines included in the final sample were:  
 - NicoletOne Monitor Reader 5.71.0.2439
 - NicoletOne Monitor Reader 5.94.1.534
 
 ## EDF file storage
-This code was designed based on the specific file formats and structures that were encountered using Nicolet and OBM (Olympic Brainz Monitor) machines; therefore, the expected directory structures of the EEG files are built around these machines. (NB: OBM machine data was omitted from final analysis, but as they are included in the current code, their storage/processing has been maintained for completeness. The code is built such that OBM files can be analyzed as well, should the user select this.)
+This code was designed based on the specific file formats and structures that were encountered using Nicolet and OBM (Olympic Brainz Monitor) machines; therefore, the expected directory structures of the EEG files are built around these machines. (NB: OBM machine data was omitted from final analysis, but as they are included in the current code, their storage/processing has been maintained for completeness.)
 
 ### Nicolet
 All Nicolet folders were stored in one subdirectory. A given FIS (that is, ID) may have multiple folders; however, each folder contained the EDF files from one single recording. Folder names began with "FISXXX_" (where XXX is any integer over 0). Within the folder, each edf file started with "FISXXX". If a single recording was split amongst multiple EDF files (this happens when EDF-D files are encountered/exported on a machine), the first had no suffix, followed by 1, then 2, then 3, etc.
