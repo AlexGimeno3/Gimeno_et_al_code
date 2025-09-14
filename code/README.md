@@ -1,4 +1,4 @@
-# General info:
+# General info
 This directory contains all the files used to complete the analysis in the paper _Association of quantitative EEG parameters extracted during infant cardiopulmonary bypass and two-year neurodevelopmental outcomes_.
 
 Each subdirectory contains a README file as necessary to explain the code and structure of the pipeline.
