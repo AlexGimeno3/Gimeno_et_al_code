@@ -24,7 +24,7 @@ All OBM folders were stored in one subdirectory. A given FIS may have had multip
 ## Other necessary files:
 A few more data files were needed to aid with determining recording times relative to surgery start and end times.
 ### Nicolet recording times
-This Excel file was called "nicolet_file_times.xlsx" and contained the following columns: "FIS" (with entries as strings such as FIS1), "fis_num" (with entries as integers such as 1), "folder_path" (the path to the folder containing the downloaded FIS file), "date_cx" (the date of the surgeries), "analyze_end_time" (the time that the surgery ended, expressed as HHMM), "recording_start_date" (the date the recording started, expressed as DDMMYYY), "recording_start_time" (expressed as HHMMSS), and "recording_time_total" (expressed as HHMMSS).
+This Excel file was called "nicolet_file_times.xlsx" and contained the following columns: "FIS" (with entries as strings such as FIS1), "fis_num" (with entries as integers such as 1), "folder_path" (the path to the folder containing the downloaded FIS file), "date_cx" (the date of the surgeries, expressed as DDMMYYYY), "analyze_end_time" (the time that the surgery ended, expressed as HHMM), "recording_start_date" (the date the recording started, expressed as DDMMYYYY), "recording_start_time" (expressed as HHMMSS), and "recording_time_total" (expressed as HHMMSS).
 ### OBM recording times
 This Excel file was called and "OBM_file_times.xlsx" and contained the following columns: "folder_path" (the path to the folder containing the downloaded FIS file), "recording_start_date" (the date the recording started, expressed as DDMMYYY), and "recording_start_time" (expressed as HHMMSS).
 ### Surgery times
